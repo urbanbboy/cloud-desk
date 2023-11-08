@@ -1,9 +1,16 @@
+import { Navbar } from "@widgets/Navbar"
+import { AppRouter } from "./providers/router/ui/AppRouter"
 
-function App() {
+import "./styles/index.scss"
+
+const App = () => {
     return (
-        <>
-            <h1>it works</h1>
-        </>
+        <div className="app">
+            <Navbar />
+            <div className="content-page">
+                <AppRouter />
+            </div>
+        </div>
     )
 }
 

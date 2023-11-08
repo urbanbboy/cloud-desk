@@ -1,0 +1,64 @@
+.form {
+    background-color: #f5f5f5;
+    padding: 40px;
+}
+
+.form_submit {
+    margin-top: 50px;
+}
+
+.form_submit_button {
+    width: 100%;
+    --color: #0B2447;
+    padding: 0.8em 1.7em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 400;
+    font-size: 17px;
+    border: 1px solid;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: var(--color);
+    z-index: 1;
+}
+   
+.form_submit_button::before, .form_submit_button::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: var(--color);
+    transition: 1s ease;
+}
+   
+.form_submit_button::before {
+    top: -1em;
+    left: -1em;
+}
+   
+.form_submit_button::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+}
+   
+.form_submit_button:hover::before, .form_submit_button:hover::after {
+    height: 410px;
+    width: 410px;
+}
+   
+.form_submit_button:hover {
+    color: #fff;
+}
+   
+.form_submit_button:active {
+    filter: brightness(.8);
+}
+   

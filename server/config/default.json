@@ -1,5 +1,6 @@
 {
     "serverPort": 5000,
     "dbUrl": "mongodb+srv://talant04asanov:gKoy3YigCzE791SA@cluster0.e7p8myd.mongodb.net/",
-    "dbPasswod": "gKoy3YigCzE791SA"
+    "dbPasswod": "gKoy3YigCzE791SA",
+    "secretKey": "mern-secret-key"
 }

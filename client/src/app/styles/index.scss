@@ -1,0 +1,7 @@
+@import "./reset.scss";
+@import "./variables.scss";
+
+.app {
+    background: rgb(169,39,111);
+    background: linear-gradient(90deg, rgba(169,39,111,1) 0%, rgba(249,122,79,1) 100%);
+}
