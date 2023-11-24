@@ -2,13 +2,15 @@ import { memo, useCallback } from 'react'
 import { Input } from '@shared/ui/Input/Input'
 import cls from './LoginForm.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginActions } from '@features/loginUser/model/slice/loginSlice'
+import { loginActions } from '../../model/slice/loginSlice'
 import { getLoginUser } from '../../model/selectors/getLoginState/getLoginState'
+import { loginByEmail } from '../../model/services/loginByEmail/loginByEmail'
+import { AppDispatch } from '@app/providers/StoreProvider/config/store'
 
 export const LoginForm = memo(() => {
-    const dispatch = useDispatch()
-    const { email, password } = useSelector(getLoginUser)
-    
+    const dispatch = useDispatch<AppDispatch>()
+    const { email, password, isLoading, error } = useSelector(getLoginUser)
+
     const onChangeEmail = useCallback((value: string) => {
         dispatch(loginActions.setEmail(value))
     }, [dispatch])
@@ -17,16 +19,20 @@ export const LoginForm = memo(() => {
         dispatch(loginActions.setPassword(value))
     }, [dispatch])
 
-    const onLoginCLick = () => {
+    const onLoginClick = useCallback(() => {
+        dispatch(loginByEmail({ email, password }))
+    }, [dispatch, email, password])
 
+    if(error) {
+        console.log(error)
     }
 
     return (
         <div className={cls.form}>
             <div className={cls.form_input}>
-                <Input 
-                    type='text' 
-                    labelName={'email'} 
+                <Input
+                    type='text'
+                    labelName={'email'}
                     onChange={onChangeEmail}
                     value={email}
                 />
@@ -34,15 +40,18 @@ export const LoginForm = memo(() => {
                 <br />
                 <Input
                     type='text'
-                    labelName={'пароль'} 
+                    labelName={'пароль'}
                     onChange={onChangePassword}
                     value={password}
                 />
             </div>
             <div className={cls.form_submit}>
-                <button 
+                {isLoading && (
+                    <div>Загрузка</div>
+                )}
+                <button
                     className={cls.form_submit_button}
-                    onClick={onLoginCLick}
+                    onClick={onLoginClick}
                 >
                     Войти
                 </button>

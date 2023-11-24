@@ -7,7 +7,7 @@ interface loginByEmailProps {
     password: string;
 }
 
-export const loginByEmail = createAsyncThunk<User, loginByEmailProps>(
+export const loginByEmail = createAsyncThunk<User, loginByEmailProps, { rejectValue: string, serializedErrorType: string }>(
     'login/loginByEmail',
     async (authData, thunkAPI) => {
         try {
